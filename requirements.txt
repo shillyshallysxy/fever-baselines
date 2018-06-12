@@ -6,6 +6,8 @@ overrides
 tqdm
 nltk
 allennlp==0.2.3
+# allennlp==0.4.3
+torch==0.3.1
 pytz
 tensorboard-pytorch
 git+git://github.com/j6mes/drqa@parallel#egg=DrQA-0.2.0
