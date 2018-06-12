@@ -17,6 +17,13 @@ RUN apt-get update && apt-get install -y build-essential gcc
 RUN . activate fever
 WORKDIR /fever
 RUN pip install --upgrade protobuf 
-# RUN pip install --no-cache-dir -r requirements.txt
-# RUN python setup.py install
+RUN pip install --no-cache-dir -r requirements.txt
+RUN python setup.py install
 
+# indexing
+RUN PYTHONPATH=/fever python scripts/build_db.py data/wiki-pages data/fever/fever.db
+RUN PYTHONPATH=/fever python scripts/build_tfidf.py data/fever/fever.db data/index/
+
+# sampling
+# Using random sampling method
+RUN PYTHONPATH=/fever python scripts/dataset/neg_sample_evidence.py data/fever/fever.db
