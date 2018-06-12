@@ -18,8 +18,9 @@ RUN . activate fever
 WORKDIR /fever
 RUN pip install --upgrade protobuf 
 RUN pip install --no-cache-dir -r requirements.txt; exit 0
-RUN python setup.py instal; exit 0
+RUN python setup.py install; exit 0
 
+ADD data /fever/
 # indexing
 RUN PYTHONPATH=/fever python scripts/build_db.py data/wiki-pages data/fever/fever.db
 RUN PYTHONPATH=/fever python scripts/build_tfidf.py data/fever/fever.db data/index/
