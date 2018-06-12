@@ -13,7 +13,10 @@ RUN apt-get update
 RUN conda update -q conda
 RUN conda info -a
 RUN conda create -q -n fever python=3.6
-RUN source activate fever
-RUN pip install -r requirements.txt
-RUN python setup.py install
+RUN apt-get update && apt-get install -y build-essential gcc
+RUN . activate fever
+WORKDIR /fever
+RUN pip install --upgrade protobuf 
+# RUN pip install --no-cache-dir -r requirements.txt
+# RUN python setup.py install
 
