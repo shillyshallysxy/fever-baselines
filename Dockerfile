@@ -9,8 +9,7 @@ ADD setup.py /fever/
 ADD src /fever/
 ADD config /fever/
 
-RUN apt-get update
-RUN conda update -q conda
+RUN apt-get update && conda update -q conda
 RUN conda info -a
 RUN conda create -q -n fever python=3.6
 RUN apt-get update && apt-get install -y build-essential gcc
@@ -22,8 +21,8 @@ RUN python setup.py install; exit 0
 
 ADD data /fever/
 # indexing
-RUN PYTHONPATH=/fever python scripts/build_db.py data/wiki-pages data/fever/fever.db
-RUN PYTHONPATH=/fever python scripts/build_tfidf.py data/fever/fever.db data/index/
+RUN PYTHONPATH=/fever python scripts/build_db.py data/wiki-pages data/fever/fever.db && \
+    PYTHONPATH=/fever python scripts/build_tfidf.py data/fever/fever.db data/index/
 
 # sampling
 # Using random sampling method
