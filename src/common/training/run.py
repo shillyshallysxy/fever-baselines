@@ -27,6 +27,9 @@ def predict(model, data, batch_size):
     return torch.stack(predicted)
 
 def train(model, fs, batch_size, lr, epochs,dev=None, clip=None, early_stopping=None,name=None):
+    """
+    fs: train_feats
+    """
     optimizer = torch.optim.Adam(model.parameters(), lr=lr, weight_decay=1e-4)
 
     data, labels = fs
