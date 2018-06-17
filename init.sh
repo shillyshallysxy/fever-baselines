@@ -30,9 +30,9 @@ fi
 
 # construct database
 if ! [ -e data/fever/fever.db ]; then
-    PYTHONPATH=src python src/scripts/build_db.py data/wiki-pages data/fever/fever.db
+    PYTHONPATH=src python3 src/scripts/build_db.py data/wiki-pages data/fever/fever.db
 fi
 
 # sampling
-PYTHONPATH=src python src/scripts/dataset/neg_sample_evidence.py data/fever/fever.db
+PYTHONPATH=src python3 src/scripts/dataset/neg_sample_evidence.py data/fever/fever.db
 
