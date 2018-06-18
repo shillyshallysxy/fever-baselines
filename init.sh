@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# just place this file in fever-baseline's root and run
+# you can get all required directory, database and randomly sampled data
+
 mkdir -p data/fever-data
 
 maybe_download()
@@ -17,15 +20,21 @@ maybe_download data/fever-data/train.jsonl https://s3-eu-west-1.amazonaws.com/fe
 maybe_download data/fever-data/dev.jsonl https://s3-eu-west-1.amazonaws.com/fever.public/paper_dev.jsonl
 maybe_download data/fever-data/test.jsonl https://s3-eu-west-1.amazonaws.com/fever.public/paper_test.jsonl
 
+if ! [ -e glove.6B.zip ]; then
+    wget http://nlp.stanford.edu/data/wordvecs/glove.6B.zip
+fi
+
 if ! [ -d data/glove ]; then
-wget http://nlp.stanford.edu/data/wordvecs/glove.6B.zip
-unzip glove.6B.zip -d data/glove
-gzip data/glove/*.txt
+    unzip glove.6B.zip -d data/glove
+    gzip data/glove/*.txt
+fi
+
+if ! [ -e wiki-pages.zip ]; then
+    wget https://s3-eu-west-1.amazonaws.com/fever.public/wiki-pages.zip
 fi
 
 if ! [ -d data/wiki-pages ]; then
-wget https://s3-eu-west-1.amazonaws.com/fever.public/wiki-pages.zip
-unzip wiki-pages.zip -d data
+    unzip wiki-pages.zip -d data
 fi
 
 # construct database
