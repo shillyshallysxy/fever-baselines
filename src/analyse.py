@@ -20,9 +20,9 @@ def analyse(predictions, actual):
 
     print("precision")
     for pre_instance, label in zip(pre, labels):
-        print("{}: {:.4}".format(label, pre_instance))
+        print("{}:\t{:.4}".format(label, pre_instance))
 
     print("recall")
     for rec_instance, label in zip(rec, labels):
-        print("{}: {:.4}".format(label, rec_instance))
+        print("{}:\t{:.4}".format(label, rec_instance))
 
