@@ -17,11 +17,12 @@ def analyse(predictions, actual):
 
     pre = np.squeeze(np.sum(np.multiply(confusion_mat, eye), axis=0) / np.sum(confusion_mat, axis=0))
     rec = np.squeeze(np.sum(np.multiply(confusion_mat, eye), axis=0) / np.sum(confusion_mat, axis=1))
+
     print("precision")
     for pre_instance, label in zip(pre, labels):
-        print(label + " : ", pre_instance)
+        print("{}: {:.4}".format(pre_instance, label))
 
     print("recall")
     for rec_instance, label in zip(rec, labels):
-        print(label + " : ", rec_instance)
+        print("{}: {:.4}".format(pre_instance, label))
 
