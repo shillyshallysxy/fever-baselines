@@ -11,8 +11,7 @@ def analyse(predictions, actual):
     for pred_instance, actual_instance in zip(predictions, actual):
         confusion_mat[label2idx[actual_instance["label"]], label2idx[pred_instance["predicted_label"]]] += 1
 
-    print("<-- actual")
-    print("predicted -->")
+    print("actual \ predicted")
     df = pandas.DataFrame(confusion_mat, labels, labels)
     print(df)
 
