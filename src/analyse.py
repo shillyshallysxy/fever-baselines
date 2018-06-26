@@ -18,9 +18,9 @@ def analyse(predictions, actual):
 
     tab = PrettyTable()
     tab.field_names = [supports, refutes, nei]
-    tab.add_row(supports, table[supports][supports], table[supports][refutes], table[supports][nei])
-    tab.add_row(refutes, table[refutes][refutes], table[refutes][refutes], table[refutes][nei])
-    tab.add_row(nei, table[nei][refutes], table[nei][refutes], table[nei][nei])
+    tab.add_row(supports,( table[supports][supports], table[supports][refutes], table[supports][nei]))
+    tab.add_row(refutes, (table[refutes][refutes], table[refutes][refutes], table[refutes][nei]))
+    tab.add_row(nei, (table[nei][refutes], table[nei][refutes], table[nei][nei]))
 
     tot = 0
     for e1 in table.keys():
