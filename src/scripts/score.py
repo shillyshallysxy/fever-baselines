@@ -18,6 +18,26 @@ predicted_labels =[]
 predicted_evidence = []
 actual = []
 
+# make sure that using the corresponding data
+
+actual_labels1 = list()
+actual_labels2 = list()
+actual_labels3 = list()
+with open(args.predicted_labels,"r") as predictions_file:
+    for line in predictions_file:
+        actual_labels1.append(json.loads(line)["actual"])
+
+with open(args.predicted_evidence,"r") as predictions_file:
+    for line in predictions_file:
+        actual_labels2.append(json.loads(line)["label"])
+
+with open(args.actual, "r") as actual_file:
+    for line in actual_file:
+        actual_labels3.append(json.loads(line)["label"])
+    for actual1, actual2, actual3 in zip(actual_labels1, actual_labels2, actual_labels3):
+        assert actual1 == actual2 == actual3, "{}, {}, {}".format(actual1, actual2, actual3)
+
+
 with open(args.predicted_labels,"r") as predictions_file:
     for line in predictions_file:
         predicted_labels.append(json.loads(line)["predicted"])
