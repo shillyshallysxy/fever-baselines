@@ -3,7 +3,7 @@ import json
 import sys
 from fever.scorer import fever_score
 from prettytable import PrettyTable
-from analyse import print_confusion_mat, save_wrong_instances, save_simple_result
+from analyse import print_confusion_mat, save_wrong_instances, save_simple_result, save_submission_file
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--predicted_labels",type=str)
@@ -14,6 +14,7 @@ parser.add_argument("--score_file",type=str)
 
 args = parser.parse_args()
 
+ids = []
 predicted_labels =[]
 predicted_evidence = []
 actual = []
@@ -46,18 +47,20 @@ with open(args.predicted_labels,"r") as predictions_file:
 with open(args.predicted_evidence,"r") as predictions_file:
     for line in predictions_file:
         predicted_evidence.append(json.loads(line)["predicted_sentences"])
+        ids.append(json.loads(line)["id"])
 
 with open(args.actual, "r") as actual_file:
     for line in actual_file:
         actual.append(json.loads(line))
 
 predictions = []
-for ev,label in zip(predicted_evidence,predicted_labels):
-    predictions.append({"predicted_evidence":ev,"predicted_label":label})
+for id, ev, label in zip(ids, predicted_evidence,predicted_labels):
+    predictions.append({"id": id,"predicted_evidence":ev,"predicted_label":label})
 
 score,acc,precision,recall,f1 = fever_score(predictions,actual)
 print_confusion_mat(predictions, actual)
 save_simple_result(args.score_file, score, acc, precision, recall)
+save_submission_file(predictions, args.submission_file)
 # save_wrong_instances(args.actual, args.predicted_labels, args.predicted_evidence, args.score_file)
 
 tab = PrettyTable()
