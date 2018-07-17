@@ -11,6 +11,7 @@ parser.add_argument("--predicted_labels",type=str)
 parser.add_argument("--predicted_evidence",type=str)
 parser.add_argument("--actual",type=str)
 parser.add_argument("--score_file",type=str)
+parser.add_argument("--submission_file",type=str)
 
 args = parser.parse_args()
 
