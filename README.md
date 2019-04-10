@@ -1,6 +1,6 @@
 # NOTE
 This repository can be only used for supplying scoring functionality to [Our model for FEVER competition in 2018](https://github.com/uclmr/fever).
-I already modify `requirements.txt` so that it does not install non-necessary stuff.
+I have already modified `requirements.txt` so that it does not install unnecessary modules.
 
 # Fact Extraction and VERification
 
