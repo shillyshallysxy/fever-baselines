@@ -1,3 +1,7 @@
+# NOTE
+This repository can be only used for supplying scoring functionality to [Our model for FEVER competition in 2018](https://github.com/uclmr/fever).
+I already modify `requirements.txt` so that it does not install non-necessary stuff.
+
 # Fact Extraction and VERification
 
 This is the PyTorch implementation of the FEVER pipeline baseline described in the NAACL2018 paper: [FEVER: A large-scale dataset for Fact Extraction and VERification.]()
